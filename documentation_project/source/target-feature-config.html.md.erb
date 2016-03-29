@@ -1,0 +1,153 @@
+---
+title:  Configuration
+layout: template-logo-medium
+---
+
+# Configuration
+
+Configuring `middleman-targets` is done in the standard Middleman `config.rb`
+file using a few simple options that are added to Middleman.
+
+If you’re used to most Middleman extensions you may be familiar with setting
+extension options in a `do` block when activating the extension. Please note
+that `middleman-targets` extends Middleman itself; the new options must _not_
+be specified in the activation block!
+{:.note}
+
+## Activation
+
+As with most Middleman extensions, `middleman-targets` must be activated before
+use. Simply add
+
+~~~ ruby
+activate :MiddlemanTargets
+~~~
+
+to your `config.rb` file.
+
+### Activation Conflicts
+
+`middleman-targets` enhances the `image_tag` helper, and as such it expects to
+be able to inherit from other `image_tag` helpers in order to do its job
+completely. If you use other extensions that enhance the `image_tag` helper,
+such as `automatic_image_sizes` or `automatic_alt_tags`, ensure that you 
+activate them _before_ activating `middleman-targets`.
+
+## The Configuration Options
+
+`target`
+
+  : This is the target that is used automatically when you `middleman build` 
+    or `middleman server` without using the `--targets` option from the
+    command line.
+
+`targets`
+
+  : The `targets` key is a comprehensive list of your targets, their features,
+    and other data pertinent to your targets.
+  
+    All of the keys contained in this structure are described in the next
+    section, below.
+
+`target_magic_images`
+`target_magic_word`
+
+  : By enabling `target_magic_images` and using `middleman-targets`’ image
+    helper, target specific images will be used instead of the image you 
+    specify, *if* that image name is prefixed with `target_magic_word`. For
+    example, you might request `all-my_image.png`, and `pro-my_image.png` (if it
+    exists) will be used in your :pro target instead.
+    
+    Important: when this is enabled, images from *other* targets will *not* be
+    included in the build! In the example above, *any* image prefixed with 
+    `free-` would not be included in the output directory.
+  
+`build_dir`
+
+  : Build output will use this directory as a *prefix*; if the target
+    is `:pro`, then the actual build directory will be `build (pro)/`. If the
+    `build_dir` key is present for any of the `targets`, they will override this
+    setting.
+    
+## The `targets` key by example
+
+The code below is the actual `targets` key for this sample project. We’ll look
+at the sub-keys and their values to understand how targets and features are
+defined, and how you can effect your build output directory as well as add
+other arbitrary data to each target.
+
+~~~ ruby
+set :targets, {
+  :free =>
+      {
+      :sample_key => 'People who use free versions don\'t drive profits.',
+      :build_dir  => 'build (%s)',
+      :features   =>
+          {
+          :feature_advertise_pro => true,
+          :insults_user          => true,
+          :grants_wishes         => false,
+          }
+      },
+
+  :pro =>
+      {
+      :sample_key => 'You are a valued contributor to our balance sheet!',
+      :features =>
+          {
+          :feature_advertise_pro => false,
+          :insults_user          => false,
+          :grants_wishes         => true,
+          }
+      },
+}
+~~~
+    
+### Each `targets`
+
+Looking at the top level of this structure you can see that there are two
+targets defined: `free` and `pro`. Nested within each of them are a series of
+additional keys.
+
+`sample_key`
+
+ : This is an example data key associated with each target. You can specify as
+   many as you wish using any naming convention that suits you. Target-specific
+   values can be retrieved in your pages using the `target_value`
+   [helper](helpers-resources.html).
+   
+`build_dir`
+
+ : When used for a target then this specified directory overrides the Middleman
+   `build_dir` setting. Note that in this project only the `free` target
+   specifies a `build_dir`; it is optional. The `pro` target, lacking a
+   `build_dir` key will default to the `middleman-targets` option setting.
+   
+   You can use a specific string for this setting, or optionally you can include
+   a single `%s` **sprintf** placeholder which will be filled with the target
+   name during build, as shown in this example.
+   
+`features`
+
+ : This key is where you define the features that are pertinent to each of your
+   targets, as well as enable or disable them.
+   
+   You can add as many features as you like, and the names can be any valid
+   Ruby symbol.
+   
+   Although not precisely required, it’s an excellent best practice to add
+   _every_ feature to _all_ of your targets, as is done in this sample project.
+   They can be enabled and disabled simply by toggling their values between
+   `true` and `false`.
+
+  
+
+<% content_for :seeAlso do %>
+<ul>
+<li><a href="index.html">Welcome to middleman-targets</a></li>
+<li><a href="simple-demo.html">Simple features demonstration</a></li>
+<li><a href="build-serve-targets.html">Build and Serve different targets</a></li>
+<li><a href="helpers-resources.html">Helpers and Resources</a></li>
+<li><a href="frontmatter.html">Front Matter</a></li>
+</ul>
+<% end %>

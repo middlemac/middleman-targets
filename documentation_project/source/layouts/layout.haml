@@ -1,0 +1,9 @@
+!!! 5
+%html
+  %head
+    %title= current_page.data.title || 'middleman-targets'
+    %meta{:content => 'text/html; charset=utf-8', :'http-equiv' => 'Content-Type'}/
+    = stylesheet_link_tag 'style'
+    = javascript_include_tag  'all'
+  %body
+    = yield

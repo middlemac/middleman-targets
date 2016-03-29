@@ -1,0 +1,59 @@
+---
+title:  Welcome to middleman-targets
+layout: template-logo-large
+---
+
+<div markdown="1">
+
+# Welcome to middleman-targets
+
+The `middleman-targets` gem is an extension to [Middleman][1] that gives you the
+ability to specify multiple build targets and provides useful tools for dealing
+with multiple targets and features.
+
+- Generate multiple targets for different uses using the same basic project
+  structure, content, and code.
+- Assign “features” to targets which give you fine-grained control over what
+  content appears in each target.
+- Select images automatically based on the current build target.
+- Use images selectively based on the current build target or feature.
+- Include target-specific versions of data in a consistent fashion.
+
+`middleman-targets` was written as part of the [Middlemac][2] Help Book building
+system for Mac OS X applications, but it’s suitable for any project that
+requires multiple build targets, such as software documentation, training
+manuals, and more.
+
+This documentation will refer to two sample targets: `:pro` and `:free`, which
+is something that a typical software publisher might do.
+
+Note that parts of this documentation will have different content depending on
+whether you are building the `:pro` or `:free` target. These are just examples,
+though, and all of the technical documentation is the same.
+{:.note}
+
+* * *
+
+- [Simple features demonstration](simple-demo.html)
+- [Build and Serve different targets](build-serve-targets.html)
+- [Configuration](target-feature-config.html)
+- [Helpers and Resources](helpers-resources.html)
+- [Front Matter](frontmatter.html)
+
+
+</div>
+
+ [1]: https://middlemanapp.com/
+ [2]: https://github.com/middlemac
+
+
+
+<% content_for :seeAlso do %>
+<ul>
+<li><a href="simple-demo.html">Simple features demonstration</a></li>
+<li><a href="build-serve-targets.html">Build and Serve different targets</a></li>
+<li><a href="target-feature-config.html">Configuration</a></li>
+<li><a href="helpers-resources.html">Helpers and Resources</a></li>
+<li><a href="frontmatter.html">Front Matter</a></li>
+</ul>
+<% end %>

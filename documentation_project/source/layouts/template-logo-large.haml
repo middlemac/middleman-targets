@@ -1,0 +1,17 @@
+= wrap_layout ('layout'.to_sym) do
+  .container-logo-large
+    %div
+      %div
+        = image_tag 'all-logo-small.png', :alt => 'middleman-targets logo'
+        %h1= "#{product_name}"
+        %h2= "version #{product_version}"
+        %a{:href => product_uri}= product_uri
+
+      - if content_for?(:seeAlso)
+        .related_topics
+          %h1 See Also
+          = yield_content :seeAlso
+
+    %div
+      .yield-content
+        ~ yield

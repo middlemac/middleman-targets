@@ -1,0 +1,39 @@
+---
+title:  Only for :pro
+layout: template-logo-small
+exclude:
+ - :free
+---
+
+# Only for :pro
+
+This page is only available to targets that are not `:free`; in this sample
+project, that means that only the `:pro` target will make this page available
+during build or while running the server.
+
+This is accomplished by using the `exclude` key in the
+[front matter](frontmatter.html) data, and excluding the `:free` target.
+
+~~~ erb
+---
+title:  Only for :pro
+layout: template-logo-small
+exclude:
+ - :free
+---
+~~~
+
+Note that `exclude` is a YAML array; you can include multiple `exclude` targets
+and/or features here.
+{:.note}
+
+<% content_for :seeAlso do %>
+<ul>
+<li><a href="index.html">Welcome to middleman-targets</a></li>
+<li><a href="simple-demo.html">Simple features demonstration</a></li>
+<li><a href="build-serve-targets.html">Build and Serve different targets</a></li>
+<li><a href="target-feature-config.html">Configuration</a></li>
+<li><a href="helpers-resources.html">Helpers and Resources</a></li>
+<li><a href="frontmatter.html">Front Matter</a></li>
+</ul>
+<% end %>

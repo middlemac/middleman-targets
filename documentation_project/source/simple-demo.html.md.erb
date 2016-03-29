@@ -1,0 +1,183 @@
+---
+title:  Simple features demonstration
+layout: template-logo-medium
+---
+
+# Simple features demonstration
+
+This page demonstrates most of the features provided by `middleman-targets`.
+Notably on this page (as on all others) you can see that the logo reflects
+the current target. If you build or serve `:pro` you will see the logo text
+differently than building or serving `:free`.
+
+This is accomplished by using the enhanced `image_tag` 
+[helper](helpers-resources.html) and specifying an image with a magic prefix (in
+this project the prefix is `all-`).
+
+
+## Current target
+
+Your current `target_name` is `<%= target_name %>`, and this `<%= target_name %>`
+output is a result of the `target_name` [helper](helpers-resources.html).
+
+This in itself isn’t so useful; your users probably don’t care about the
+internal names for your targets. However…
+
+
+## Target based conditions
+
+You can vary the output per target using simple conditional expressions in
+whatever template language you use. Since the source for this page is an ERB
+file, let’s show an example using ERB:
+
+<% if target_name?(:pro) %>
+**You are viewing the `pro` target.**
+<% else %>
+**You are viewing the `free` target.**
+<% end %>
+{:.note}
+
+This output is a result of this conditional in the source file:
+
+~~~ erb
+<%% if target_name?(:pro) %>
+**You are viewing the `pro` target.**
+<%% else %>
+**You are viewing the `free` target.**
+<%% end %>
+~~~
+
+If you only have a few targets without a large variety of feature differences,
+then using target based conditions may be ideal for you. However as things tend
+to become more complex, micromanaging which content belongs to which feature
+tends to become unmanageable.
+
+
+## Feature based conditions
+
+Applying content based on feature gives you much greater flexibility and control
+over what content is included in your builds. The concept is simple: add an
+identical list of features to each target in your [`config.rb`](target-feature-config.html)
+file, and then either enable them (`true`) or disable them (`false`) for each
+target.
+
+For example, the `config.rb` for this project includes the feature
+`feature_advertise_pro`, which is something that might be reasonable to include
+in your free project but unnecessary in your professional project, e.g.:
+
+<% if target_feature?(:feature_advertise_pro) %>
+Did you know that the Professional version of project has an even better message
+for you?
+<% else %>
+As a thank you to our valued, paying customers we offer you, well, thanks!
+<% end %>
+{:.note}
+
+The notice above was produced with this simple code:
+
+~~~ erb
+<%% if target_feature?(:feature_advertise_pro) %>
+As a thank you to our valued, paying customers we offer you, well, thanks!
+<%% else %>
+Did you know that the Professional version of project has an even better message
+for you?
+<%% end %>
+~~~
+
+Managing your content with features instead of targets can make it dead simple
+to change your documentation in the event that your product features change.
+
+
+## Target specific data
+
+This project’s [`config.rb`](target-feature-config.html) defines a sample data
+key called `sample_key` containing a different message for each target.
+
+<%= @app.config[:targets][@app.config[:target]][:sample_key] %>
+{:.note}
+
+That output was generated with this code:
+
+~~~ erb
+<%%= @app.config[:targets][@app.config[:target]][:sample_key] %>
+~~~
+
+However that’s a bit fussy, and could be output much more easily by using a
+built-in [helper](helpers-resources.html):
+
+<%= target_value(:sample_key) %>
+{:.note}
+
+~~~ erb
+<%%= target_value(:sample_key) %>
+~~~
+
+
+## Omitting pages
+
+Using [frontmatter data](frontmatter.html) you can selectively include and/or
+exclude entire pages from your project based on target and/or features. The
+two links (but not destinations) that follow are present in both the `:pro`
+and `:free` targets, but depending on which target you are viewing the
+destination will not be present.
+
+- [Link to a `:free`-only page](only-free.html)
+- [Link to a `:pro`-only page](only-pro.html)
+
+Code revealing how this is done is present on those two pages.
+
+
+## Target and feature specific images
+
+Our `image_tag` helper adds the `:target` and `:feature` parameters to the
+built-in helper which is intended as a space-saver compared to 
+`<%% if target_name?(…) %>` and `<%% if target_feature?(…) %>` conditional
+blocks. Simply supply the desired target or feature in the options parameter
+and the image will be included or excluded appropriately.
+
+<%= image_tag 'pro-logo-small.png', :target => 'pro' %>
+<%= image_tag 'free-logo-small.png', :target => 'free' %>
+
+You will see an appropriate version of the logo based on this code:
+
+~~~ erb
+<%%= image_tag 'pro-logo-small.png', :target => 'pro' %>
+<%%= image_tag 'free-logo-small.png', :target => 'free' %>
+~~~
+
+However in the case of target based image selection, there’s an even easier
+way…
+
+
+## Automatic target based images
+
+By specifying a magic prefix defined in your [`config.rb`](target-feature-config.html)
+file, you can enable automatic substitution of images based on the current
+build target. For example:
+
+<%= image_tag 'all-logo-small.png' %>
+
+The above, target-appropriate image was produced with this single line of code:
+
+~~~ erb
+<%%= image_tag 'all-logo-small.png' %>
+~~~
+
+If you look at the `images/` directory in this project’s source, you’ll notice
+that there’s not even a file named `all-logo-small.png`.
+
+Do note, however, that this automatic substitution _only_ works for images that
+are located within your project’s directory, and not from assets not available
+in the file system.
+{:.note}
+
+
+<% content_for :seeAlso do %>
+<ul>
+<li><a href="index.html">Welcome to middleman-targets</a></li>
+<li><a href="build-serve-targets.html">Build and Serve different targets</a></li>
+<li><a href="target-feature-config.html">Configuration</a></li>
+<li><a href="helpers-resources.html">Helpers and Resources</a></li>
+<li><a href="frontmatter.html">Front Matter</a></li>
+</ul>
+<% end %>

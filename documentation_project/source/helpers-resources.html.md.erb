@@ -1,0 +1,98 @@
+---
+title:  Helpers and Resources
+layout: template-logo-medium
+---
+
+# Helpers and Resources
+
+`middleman-targets` includes some helpers and some page resources that make
+working with multiple targets easier.
+
+
+## Resources
+
+Middleman’s resource list is available to all of your templates and pages, and
+also available for your own helpers, and `middleman-targets` provides a couple
+of resource map additions than can prove useful when developing your own
+helpers.
+
+`valid_features`
+
+ : `valid_features` returns an array of features that are enabled and applicable
+   to the current build target. Although available for output in your pages,
+   this is probably most useful for developing your own helpers.
+   
+   By way of example, the raw output of `<%%= current_page.valid_features %>`
+   on this page is `<%= current_page.valid_features %>`. The output will be
+   different if you switch targets.
+   
+`targeted?`
+
+ : Determines if the resource is eligible for inclusion in the current page
+   based on the front matter `target` and `exclude` data fields
+  
+   - if `frontmatter:target` is used, the target or feature appears in the 
+     front matter, and
+   - if `frontmatter:exclude` is used, the target or enabled feature does NOT
+     appear in the frontmatter.
+     
+   In general you won't use this resource method on pages because resources will
+   already be excluded before you have a chance to check them, and so any
+   leftover resources will always return true for this method. This method could
+   be valuable in writing your own helpers, however.
+
+
+## Helpers
+
+`target_name`
+
+  : Return the current build target.
+
+`target_name?(proposal)`
+
+ : Is the current target `proposal`?
+
+`target_feature?(feature)`
+
+ : Does the target have the feature `feature`?
+
+`target_value(key)`
+
+ : Attempts to return the value for they key `key` for the current target.
+ 
+`image_tag`
+
+ : Extends Middleman’s built-in `image_tag` helper in order to support:
+ 
+   - automatic target-specific images. Note that this only works on local files.
+   - target and feature dependent images.
+   - absolute paths
+   
+   Automatic target-specific images are described in 
+   [Simple features demonstration](simple-demo.html), and allow you to specify
+   an image with a magic prefix in your source code which will be substituted
+   with a target-specific image for output.
+   
+   Target- and feature-dependent images add the `:target` and `:feature`
+   options to the `image_tag` parameter array, indicating that the image should
+   only be used in the condition specified. For example,
+   `image_tag 'my_image.png', :feature => 'insults_user'` will only include the
+   image if the current target has the feature `insults_user` enabled.
+   
+   As a freebie that’s not specifically related to multiple targets, our
+   `image_tag` helper also works with absolute image paths, where ”absolute”
+   means relative to your project directory. Specifying `/assets/images/photo.png`
+   will correctly reference that image as if your project directory were the
+   root filesystem.
+
+
+
+<% content_for :seeAlso do %>
+<ul>
+<li><a href="index.html">Welcome to middleman-targets</a></li>
+<li><a href="simple-demo.html">Simple features demonstration</a></li>
+<li><a href="build-serve-targets.html">Build and Serve different targets</a></li>
+<li><a href="target-feature-config.html">Configuration</a></li>
+<li><a href="frontmatter.html">Front Matter</a></li>
+</ul>
+<% end %>

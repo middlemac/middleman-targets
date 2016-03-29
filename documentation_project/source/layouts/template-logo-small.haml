@@ -1,0 +1,11 @@
+= wrap_layout ('layout'.to_sym) do
+  .container-logo-small
+    .yield-content
+      = image_tag 'all-logo-small.png', :alt => 'middleman-targets logo'
+      ~ yield
+
+    .related_topics
+      - if content_for?(:seeAlso)
+        %hr
+        %h1 See Also
+        = yield_content :seeAlso

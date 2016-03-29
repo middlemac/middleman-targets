@@ -1,0 +1,17 @@
+# Rubymine noise
+.idea/
+
+# BBedit noise
+*.bbprojectd
+
+# Mac OS X noise
+.DS_Store
+
+# Ignore bundler lock files
+Gemfile.lock
+
+# Ignore pkg folder
+/pkg
+
+# Ignore build folders
+build*

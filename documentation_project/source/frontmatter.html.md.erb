@@ -1,0 +1,70 @@
+---
+title:  Front Matter
+layout: template-logo-medium
+---
+
+# Front Matter
+
+By default every page in a Middleman project is included in the build output,
+but `middleman-targets` provides means to ensure that only target- and
+feature-specific pages are included. This is controlled by data in your pages’
+front matter.
+
+## `target`
+
+The `target` key acts to ensure that _only_ targets and features in its array
+are included in the build. For example:
+
+~~~ erb
+---
+target:
+ - :free
+ - :insults_user
+---
+~~~
+
+This example page would only be built if the target **or** feature is `free`
+or `insults_user`.
+
+Note there is no distinction between targets and features in this list. If the
+target is `insults_user` or the feature is `free`, then output will be enabled.
+{:.note}
+
+
+## `exclude`
+
+The `exclude` key ensures that pages are only built for targets and features
+that do not appear in the `exclude` array. For example:
+
+~~~ erb
+---
+exclude:
+ - :pro
+ - :insults_user
+---
+~~~
+
+This example would build the page, unless the current target or feature were
+`pro` **or** `insults_user`, i.e., either condition prevents the page from
+ being output.
+
+Note there is no distinction between targets and features in this list. If the
+target is `insults_user` or the feature is `free`, then output will be enabled.
+{:.note}
+
+
+## Precedence
+
+`exclude` will always override `target`.
+
+
+
+<% content_for :seeAlso do %>
+<ul>
+<li><a href="index.html">Welcome to middleman-targets</a></li>
+<li><a href="simple-demo.html">Simple features demonstration</a></li>
+<li><a href="build-serve-targets.html">Build and Serve different targets</a></li>
+<li><a href="target-feature-config.html">Configuration</a></li>
+<li><a href="helpers-resources.html">Helpers and Resources</a></li>
+</ul>
+<% end %>

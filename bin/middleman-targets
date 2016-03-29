@@ -1,0 +1,80 @@
+#!/usr/bin/env ruby
+
+################################################################################
+# middleman-targets
+#  This file constitutes the command line interface for middleman-targets
+################################################################################
+
+require 'thor'
+require 'fileutils'
+require 'middleman-targets/version'
+
+module MiddlemacTargetsCli
+
+  class Cli < Thor
+
+    map %w[--version -v] => :__print_version
+    
+    ############################################################
+    # help
+    #  Override to add additional description.
+    ############################################################
+    def help(*args)
+      if args.count == 0
+        puts <<-HEREDOC
+
+middleman-targets version #{Middleman::MiddlemanTargets::VERSION}
+
+This gem adds functionality to Middleman and is not executable on its own
+(other than for generating the documentation sample project). Instead, you
+must add this gem to your Middleman project's `Gemfile` and then activate
+it in your `config.rb` file. This will enable the new `--target` command
+line option in Middleman, and the new `build_all` command.
+
+HEREDOC
+      end
+      super
+    end
+
+
+    ############################################################
+    # documentation
+    ############################################################
+    desc 'documentation', 'Install the sample project into your current working directory.'
+    long_desc <<-HEREDOC
+`documentation` will produce a sample project named `middleman-targets-docs/`
+in your current working directory. This sample uses the features of this gem.
+You can then serve this new project to read the documentation by:
+
+cd middleman-targets-docs
+bundle install
+bundle exec middleman server
+    
+    HEREDOC
+    def documentation
+      source = File.join('..', '..', 'documentation_project', '.')
+      source = File.expand_path(source, __FILE__)
+      dest = File.expand_path(File.join('.', 'middleman-targets-docs', '.'))
+      FileUtils.cp_r(source, dest)
+      puts "middleman-targets installed the project in\n#{dest}" 
+    end
+
+
+    ############################################################
+    # __print_version
+    ############################################################
+    desc '--version, -v', 'print the version'
+    def __print_version
+      puts "middleman-targets version #{Middleman::MiddlemanTargets::VERSION}"
+    end
+
+  end # class Cli
+
+end # module MiddlemacTargetsCli
+
+
+###########################################################
+# Main
+###########################################################
+
+MiddlemacTargetsCli::Cli.start(ARGV)
