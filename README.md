@@ -1,5 +1,6 @@
 middleman-targets readme
 ========================
+[![Gem Version](https://badge.fury.io/rb/middleman-targets.svg)](https://badge.fury.io/rb/middleman-targets)
 
 `middleman-targets`
 
