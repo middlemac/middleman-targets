@@ -70,7 +70,7 @@ bundle exec middleman server
 
   end # class Cli
 
-end # module MiddlemacTargetsCli
+end # module MiddlemanTargetsCli
 
 
 ###########################################################
