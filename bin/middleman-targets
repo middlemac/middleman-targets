@@ -9,7 +9,7 @@ require 'thor'
 require 'fileutils'
 require 'middleman-targets/version'
 
-module MiddlemacTargetsCli
+module MiddlemanTargetsCli
 
   class Cli < Thor
 
@@ -77,4 +77,4 @@ end # module MiddlemacTargetsCli
 # Main
 ###########################################################
 
-MiddlemacTargetsCli::Cli.start(ARGV)
+MiddlemanTargetsCli::Cli.start(ARGV)
