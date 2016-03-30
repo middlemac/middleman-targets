@@ -104,7 +104,7 @@ helpers do
   end
 
   def product_version
-    '2.0.0-beta1'
+    '1.0.1'
   end
 
   def product_uri
