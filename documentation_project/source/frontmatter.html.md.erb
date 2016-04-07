@@ -3,7 +3,7 @@ title:  Front Matter
 layout: template-logo-medium
 ---
 
-# Front Matter
+# <%= current_page.data.title %>
 
 By default every page in a Middleman project is included in the build output,
 but `middleman-targets` provides means to ensure that only target- and
@@ -66,5 +66,6 @@ target is `insults_user` or the feature is `free`, then output will be enabled.
 <li><a href="build-serve-targets.html">Build and Serve different targets</a></li>
 <li><a href="target-feature-config.html">Configuration</a></li>
 <li><a href="helpers-resources.html">Helpers and Resources</a></li>
+<li><a href="cli.html">Command Line Interface</a></li>
 </ul>
 <% end %>

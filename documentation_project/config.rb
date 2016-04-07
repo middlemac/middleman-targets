@@ -16,8 +16,7 @@ activate :automatic_alt_tags
 # Extension Setup
 #  Note that middleman-targets adds configuration parameters to the base
 #  Middleman application (supported feature in 4.0+); there are *not*
-#  extension options. Additionally if middleman-targets is in your Gemfile
-#  then it is also activated automatically.
+#  extension options.
 #==========================================================================
 activate :MiddlemanTargets
 
@@ -104,7 +103,7 @@ helpers do
   end
 
   def product_version
-    '1.0.1'
+    '1.0.2'
   end
 
   def product_uri

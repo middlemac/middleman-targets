@@ -14,4 +14,4 @@ Gemfile.lock
 /pkg
 
 # Ignore build folders
-build*
+build/*

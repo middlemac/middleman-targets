@@ -1,0 +1,49 @@
+---
+title:     Command Line Interface
+layout:    template-logo-medium
+---
+
+# <%= current_page.data.title %>
+
+`middleman-targets` has a small command line interface that might be useful
+for generating sample documentation.
+
+The CLI takes the format:
+
+~~~ bash
+middleman-targets command
+~~~
+
+…where the following commands are available.
+
+`documentation`
+
+ : Produces a sample project named `middleman-targets-docs/` in your current
+   working directory. This sample uses the features of this gem. You can then
+   serve this new project to read the documentation by:
+
+~~~ bash
+cd middleman-targets-docs
+bundle install
+bundle exec middleman server
+~~~
+
+
+`help`
+
+ : Displays CLI usage help.
+ 
+`--version` or `-v`
+
+ : Displays the version of `middleman-targets`.
+
+<% content_for :seeAlso do %>
+<ul>
+<li><a href="index.html">Welcome to middleman-targets</a></li>
+<li><a href="simple-demo.html">Simple features demonstration</a></li>
+<li><a href="build-serve-targets.html">Build and Serve different targets</a></li>
+<li><a href="target-feature-config.html">Configuration</a></li>
+<li><a href="helpers-resources.html">Helpers and Resources</a></li>
+<li><a href="frontmatter.html">Front Matter</a></li>
+</ul>
+<% end %>
