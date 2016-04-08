@@ -221,33 +221,17 @@ class MiddlemanTargets < ::Middleman::Extension
 
       # Let's try to find a substitutable file if the current image name
       # begins with the :target_magic_word
-      if @app.config[:target_magic_images] && File.basename(path).start_with?( @app.config[:target_magic_word])
-        real_path = path.dup
-
-        # Enable absolute paths, too.
-        real_path = if path.start_with?('/')
-                      File.expand_path(File.join(@app.config[:source], real_path))
-                    else
-                      File.expand_path(File.join(@app.config[:source], @app.config[:images_dir], real_path))
-                    end
-
-        proposed_file = real_path.sub( "#{@app.config[:target_magic_word]}-", "#{app.config[:target]}-" )
-        file = app.files.find(:source, proposed_file)
-
-        # Now, only make the change *if* the file exists on disk.
-        if file && file[:full_path].exist?
-          path = path.dup.sub("#{@app.config[:target_magic_word]}-", "#{app.config[:target]}-")
-
-          # Support automatic alt tags for absolute locations, too. Only do
-          # this for absolute paths; let the extension do its own thing
-          # otherwise.
-          if @app.extensions[:automatic_alt_tags] && path.start_with?('/')
-            alt_text = File.basename(file[:full_path].to_s, '.*')
-            alt_text.capitalize!
-            params[:alt] ||= alt_text
-          end
-
-        end
+      if @app.config[:target_magic_images]
+        path = extensions[:MiddlemanTargets].target_specific_proposal( path )
+      end
+      
+      # Support automatic alt tags for absolute locations, too. Only do
+      # this for absolute paths; let the extension do its own thing
+      # otherwise.
+      if @app.extensions[:automatic_alt_tags] && path.start_with?('/')
+        alt_text = File.basename(file[:full_path].to_s, '.*')
+        alt_text.capitalize!
+        params[:alt] ||= alt_text
       end
 
       super(path, params)
@@ -258,9 +242,46 @@ class MiddlemanTargets < ::Middleman::Extension
 
 
   ############################################################
+  # Instance Methods
+  ############################################################
+
+
+  #--------------------------------------------------------
+  # target_specific_proposal( file )
+  #  Returns a target-specific proposed file when given
+  #  a user-specified file, and will return the same file
+  #  if not enabled or doesn't begin with the magic word.
+  #--------------------------------------------------------
+  def target_specific_proposal( path )
+    return path unless @app.config[:target_magic_images] && File.basename(path).start_with?( @app.config[:target_magic_word])
+
+    real_path = path.dup
+    magic_prefix = "#{app.config[:target_magic_word]}-"
+    wanted_prefix = "#{app.config[:target]}-"
+
+    # Enable absolute paths, too.
+    real_path = if path.start_with?('/')
+                  File.expand_path(File.join(app.config[:source], real_path))
+                else
+                  File.expand_path(File.join(app.config[:source], app.config[:images_dir], real_path))
+                end
+
+    proposed_path = real_path.sub( magic_prefix, wanted_prefix )
+    file = app.files.find(:source, proposed_path)
+    
+    if file && file[:full_path].exist?
+      path.sub( magic_prefix, wanted_prefix )
+    else
+      path
+    end
+
+  end
+ 
+ 
+  #--------------------------------------------------------
   # say
   #  Output colored messages using ANSI codes.
-  ############################################################
+  #--------------------------------------------------------
   def say(message = '', color = :reset)
     colors = { :blue   => "\033[34m",
                :cyan   => "\033[36m",

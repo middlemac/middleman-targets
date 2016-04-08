@@ -1,6 +1,11 @@
 middleman-targets change log
 ============================
 
+- Version 1.0.3 / 2016-April-08
+
+  - A bit of internal refactoring in order for related gems to be able
+    to use a bit of our features.
+
 - Version 1.0.2 / 2016-April-07
 
   - Fixed another git issue that introduced a filler page.
