@@ -71,6 +71,7 @@ Or:
 bundle exec middleman serve --target mytarget
 ~~~
 
+
 Added Features
 --------------
 
@@ -89,10 +90,26 @@ available, including
 - …and more.
 
 
+Rake Tasks
+----------
+
+Run tests:
+
+~~~ bash
+rake test
+~~~
+
+Generate YARD documentation:
+
+~~~ bash
+rake yard
+~~~
+
+
 Middlemac
 ---------
 
-  This Middleman extension is a critical part of
+This Middleman extension is a critical part of
 [Middlemac](https://github.com/middlemac), the Mac OS X help building system
 for Mac OS X applications. However this gem is not Mac OS X specific and can be
 useful in any application for which you want to generate multiple targets.
@@ -101,11 +118,11 @@ useful in any application for which you want to generate multiple targets.
 License
 -------
 
-MIT. See `LICENSE.md`.
+MIT. See [`LICENSE.md`](LICENSE.md).
 
 
 Changelog
 ---------
 
-See `CHANGELOG.md` for point changes, or simply have a look at the commit
-history for non-version changes (such as readme updates).
+See [`CHANGELOG.md`](CHANGELOG.md) for point changes, or simply have a look at
+the commit history for non-version changes (such as readme updates).

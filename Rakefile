@@ -1,10 +1,16 @@
 require 'bundler/gem_tasks'
-require 'rake/testtask'
+require 'cucumber/rake/task'
+require 'yard'
 
-Rake::TestTask.new(:test) do |t|
-  t.libs << 'test'
-  t.libs << 'lib'
-  t.test_files = FileList['test/**/*_test.rb']
+ENV['GEM_NAME'] = 'middleman-targets'
+
+task :default => :test
+
+Cucumber::Rake::Task.new(:test, 'Features that must pass') do |task|
+  task.cucumber_opts = '--require features --color --tags ~@wip --strict --format QuietFormatter'
 end
 
-task :default => :spec
+
+YARD::Rake::YardocTask.new(:yard) do |task|
+  task.stats_options = ['--list-undoc']
+end

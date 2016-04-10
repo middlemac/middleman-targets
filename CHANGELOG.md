@@ -1,6 +1,13 @@
 middleman-targets change log
 ============================
 
+- Version 1.0.4 / 2016-April-14
+
+  - Added Cucumber tests.
+  - Added *much* documentation to the extension source in order to
+    generate YARD documentation.
+  - Improved the documentation sample project to use YARD's output.
+
 - Version 1.0.3 / 2016-April-08
 
   - A bit of internal refactoring in order for related gems to be able

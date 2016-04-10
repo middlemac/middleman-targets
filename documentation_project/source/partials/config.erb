@@ -1,0 +1,326 @@
+<div class="attr_details">
+
+  <div class="method_details first">
+    <h3 class="signature first" id="config[:build_dir]=-instance_method">
+
+      - (<tt>String</tt>) <strong>config[:build_dir]=</strong>(value)
+
+
+
+
+
+    </h3><div class="docstring">
+    <div class="discussion">
+
+      <p>Indicates where <strong>Middleman</strong> will put build output. This standard config
+        value will be treated as a <em>prefix</em>; for example if the current target is <code>:pro</code> and this
+        value is set to its default <code>build</code>, then the actual build directory will
+        be <code>build (pro)/</code>.</p>
+
+      <p>If the <code>build_dir</code> key is present for any of the <code>config[:targets]</code>, they
+        will override this setting.</p>
+
+
+    </div>
+  </div>
+    <div class="tags">
+      <p class="tag_title">Parameters:</p>
+      <ul class="param">
+
+        <li>
+
+          <span class='name'>value</span>
+
+
+          <span class='type'>(<tt>String</tt>)</span>
+
+
+
+          &mdash;
+          <div class='inline'><p>Indicate the build directory prefix that should be
+            used for build output.</p>
+          </div>
+
+        </li>
+
+      </ul>
+
+      <p class="tag_title">Returns:</p>
+      <ul class="return">
+
+        <li>
+
+
+          <span class='type'>(<tt>String</tt>)</span>
+
+
+
+          &mdash;
+          <div class='inline'><p>Returns the current value of this configuration setting.</p>
+          </div>
+
+        </li>
+
+      </ul>
+
+    </div>
+  </div>
+
+
+  <div class="method_details">
+    <h3 class="signature">
+
+      - (<tt>Symbol</tt>) <strong>config[:target]=</strong>(value)
+
+
+
+
+
+    </h3><div class="docstring">
+    <div class="discussion">
+
+      <p>Indicates the current target that is being built or served. When
+        set in <code>config.rb</code> it indicates the default target if one is not
+        specified on the command line.</p>
+
+
+    </div>
+  </div>
+    <div class="tags">
+      <p class="tag_title">Parameters:</p>
+      <ul class="param">
+
+        <li>
+
+          <span class='name'>value</span>
+
+
+          <span class='type'>(<tt>Symbol</tt>)</span>
+
+
+
+          &mdash;
+          <div class='inline'><p>The target from <code>config[:targets]</code> that should
+            be used as the default.</p>
+          </div>
+
+        </li>
+
+      </ul>
+
+      <p class="tag_title">Returns:</p>
+      <ul class="return">
+
+        <li>
+
+
+          <span class='type'>(<tt>Symbol</tt>)</span>
+
+
+
+          &mdash;
+          <div class='inline'><p>Returns the current target.</p>
+          </div>
+
+        </li>
+
+      </ul>
+
+    </div>
+  </div>
+
+
+  <div class="method_details ">
+    <h3 class="signature ">
+
+      - (<tt>Boolean</tt>) <strong>config[:target_magic_images]=</strong>(value)
+
+
+
+
+
+    </h3><div class="docstring">
+    <div class="discussion">
+
+      <p>This option is used to enable or disable the target magic images feature.
+        If it’s <code>true</code> then the <code>image_tag</code> helper will attempt to substitute
+        target-specific images instead of the specified image, if the specified
+        image begins with <code>:target_magic_word</code>.</p>
+
+
+    </div>
+  </div>
+    <div class="tags">
+      <p class="tag_title">Parameters:</p>
+      <ul class="param">
+
+        <li>
+
+          <span class='name'>value</span>
+
+
+          <span class='type'>(<tt>Boolean</tt>)</span>
+
+
+
+          &mdash;
+          <div class='inline'><p>Specify whether or not automatic target-specific
+            image substitution should be enabled.</p>
+          </div>
+
+        </li>
+
+      </ul>
+
+      <p class="tag_title">Returns:</p>
+      <ul class="return">
+
+        <li>
+
+
+          <span class='type'>(<tt>Boolean</tt>)</span>
+
+
+
+          &mdash;
+          <div class='inline'><p>Returns the current state of this option.</p>
+          </div>
+
+        </li>
+
+      </ul>
+
+    </div>
+  </div>
+
+
+  <div class="method_details ">
+    <h3 class="signature ">
+
+      - (<tt>String</tt>) <strong>config[:target_magic_word]=</strong>(value)
+
+
+
+
+
+    </h3><div class="docstring">
+    <div class="discussion">
+
+      <p>Indicates the magic image prefix for image substitution with the
+        <code>image_tag</code> helper when <code>:target_magic_images</code> is enabled. For example
+        if you specify <code>all-image.png</code> and <code>pro-image.png</code> exists, then the
+        latter will be used by the helper instead of the former.</p>
+
+
+    </div>
+  </div>
+    <div class="tags">
+      <p class="tag_title">Parameters:</p>
+      <ul class="param">
+
+        <li>
+
+          <span class='name'>value</span>
+
+
+          <span class='type'>(<tt>String</tt>)</span>
+
+
+
+          &mdash;
+          <div class='inline'><p>Indicate the prefix that should indicate and image
+            the should be substituted, such as <code>all</code>.</p>
+          </div>
+
+        </li>
+
+      </ul>
+
+      <p class="tag_title">Returns:</p>
+      <ul class="return">
+
+        <li>
+
+
+          <span class='type'>(<tt>String</tt>)</span>
+
+
+
+          &mdash;
+          <div class='inline'><p>Returns the current magic prefix.</p>
+          </div>
+
+        </li>
+
+      </ul>
+
+    </div>
+  </div>
+
+
+  <div class="method_details ">
+    <h3 class="signature ">
+
+      - (<tt>Hash</tt>) <strong>config[:targets]=</strong>(value)
+
+
+
+
+
+    </h3><div class="docstring">
+    <div class="discussion">
+
+      <p>A hash that defines all of the characteristics of your individual targets.
+        The <code>build_dir</code> and <code>features</code> keys in a target have special meanings;
+        other keys can be added arbitrarily and helpers can fetch these for you.
+        A best practice is to assign the same features to <em>all</em> of your targets and
+        toggle them <code>on</code> or <code>off</code> on a target-specific basis.</p>
+
+
+    </div>
+  </div>
+    <div class="tags">
+
+    <p class="tag_title">Parameters:</p>
+    <ul class="param">
+
+      <li>
+
+        <span class='name'>value</span>
+
+
+        <span class='type'>(<tt>Hash</tt>)</span>
+
+
+
+        &mdash;
+        <div class='inline'><p>The complete definition of your targets, their
+          features, and other keys-value pairs that you wish to include.</p>
+        </div>
+
+      </li>
+
+    </ul>
+
+    <p class="tag_title">Returns:</p>
+    <ul class="return">
+
+      <li>
+
+
+        <span class='type'>(<tt>Hash</tt>)</span>
+
+
+
+        &mdash;
+        <div class='inline'><p>Returns the attributes of your targets.</p>
+        </div>
+
+      </li>
+
+    </ul>
+
+  </div>
+</div>
+
+</div>

@@ -35,40 +35,10 @@ activate them _before_ activating `middleman-targets`.
 
 ## The Configuration Options
 
-`target`
+<%= partial 'partials/config' %>
 
-  : This is the target that is used automatically when you `middleman build` 
-    or `middleman server` without using the `--targets` option from the
-    command line.
+* * *
 
-`targets`
-
-  : The `targets` key is a comprehensive list of your targets, their features,
-    and other data pertinent to your targets.
-  
-    All of the keys contained in this structure are described in the next
-    section, below.
-
-`target_magic_images`
-`target_magic_word`
-
-  : By enabling `target_magic_images` and using `middleman-targets`’ image
-    helper, target specific images will be used instead of the image you 
-    specify, *if* that image name is prefixed with `target_magic_word`. For
-    example, you might request `all-my_image.png`, and `pro-my_image.png` (if it
-    exists) will be used in your :pro target instead.
-    
-    Important: when this is enabled, images from *other* targets will *not* be
-    included in the build! In the example above, *any* image prefixed with 
-    `free-` would not be included in the output directory.
-  
-`build_dir`
-
-  : Build output will use this directory as a *prefix*; if the target
-    is `:pro`, then the actual build directory will be `build (pro)/`. If the
-    `build_dir` key is present for any of the `targets`, they will override this
-    setting.
-    
 ## The `targets` key by example
 
 The code below is the actual `targets` key for this sample project. We’ll look
@@ -77,7 +47,7 @@ defined, and how you can effect your build output directory as well as add
 other arbitrary data to each target.
 
 ~~~ ruby
-set :targets, {
+config[:targets] = {
   :free =>
       {
       :sample_key => 'People who use free versions don\'t drive profits.',
@@ -109,14 +79,14 @@ Looking at the top level of this structure you can see that there are two
 targets defined: `free` and `pro`. Nested within each of them are a series of
 additional keys.
 
-`sample_key`
+`:sample_key`
 
  : This is an example data key associated with each target. You can specify as
    many as you wish using any naming convention that suits you. Target-specific
    values can be retrieved in your pages using the `target_value`
    [helper](helpers-resources.html).
    
-`build_dir`
+`:build_dir`
 
  : When used for a target then this specified directory overrides the Middleman
    `build_dir` setting. Note that in this project only the `free` target
@@ -127,7 +97,7 @@ additional keys.
    a single `%s` **sprintf** placeholder which will be filled with the target
    name during build, as shown in this example.
    
-`features`
+`:features`
 
  : This key is where you define the features that are pertinent to each of your
    targets, as well as enable or disable them.

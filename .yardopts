@@ -1,0 +1,9 @@
+--no-private
+--markup=markdown
+--load yard/yard_extensions.rb
+--exclude middleman-targets/version.rb
+--exclude middleman-targets/commands.rb
+--exclude middleman-targets/middleman-cli/build_all.rb
+--one-file
+--readme yard/readme.md
+--title middleman-targets

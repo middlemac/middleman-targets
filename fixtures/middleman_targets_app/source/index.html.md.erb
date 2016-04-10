@@ -1,0 +1,35 @@
+<% if target_feature?(:insults_user) %>
+Insult: YES
+<% else %>
+Insult: NO
+<% end %>
+
+TargetName: <%= target_name %>
+
+<% if target_name?(:free) %>
+TargetFree: YES
+<% else %>
+TargetFree: NO
+<% end %>
+
+TargetValueForSampleKey: <%= target_value(:sample_key) %>
+
+CurrentPageValidFeatures: <%= current_page.valid_features %>
+
+
+~~~
+<%= image_tag '/all-root.png' %>
+~~~
+
+~~~
+<%= image_tag '/all-root-logo.png' %>
+~~~
+
+~~~
+<%= image_tag 'all-image.png' %>
+~~~
+
+~~~
+<%= image_tag 'all-logo.png' %>
+~~~
+
