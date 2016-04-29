@@ -169,6 +169,7 @@ class MiddlemanTargets < ::Middleman::Extension
   ############################################################
   #  Sitemap manipulators.
   #    Add new methods to each resource.
+  # @visibility private
   ############################################################
   def manipulate_resource_list(resources)
 
@@ -326,6 +327,7 @@ class MiddlemanTargets < ::Middleman::Extension
     #   tag will only be applied if the current target
     #   enables the feature `feature`.
     # @return [Void]
+    # @group Extended Helpers
     #--------------------------------------------------------
     def image_tag(path, params={})
       params.symbolize_keys!
@@ -355,13 +357,14 @@ class MiddlemanTargets < ::Middleman::Extension
       end
 
       super(path, params)
-    end
+    end # @endgroup
 
   end #helpers
 
 
   ############################################################
   # Instance Methods
+  # @group Instance Methods
   ############################################################
 
 
