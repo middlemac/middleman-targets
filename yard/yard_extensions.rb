@@ -8,7 +8,6 @@
 ##########################################################################
 YARD::Templates::Engine.register_template_path File.join(File.dirname(__FILE__), 'template-grouped')
 
-
 ##########################################################################
 # Force Yard to parse the helpers block in a Middleman extension.
 #

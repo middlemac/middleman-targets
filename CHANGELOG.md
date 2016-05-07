@@ -1,29 +1,54 @@
 middleman-targets change log
 ============================
 
-- Version 1.0.4 / 2016-April-14
+- Version 1.0.6 / 2016-May-11
 
-  - Added Cucumber tests.
-  - Added *much* documentation to the extension source in order to
-    generate YARD documentation.
-  - Improved the documentation sample project to use YARD's output.
+  - Version 1.0.6
+      - Added the missing documentation file git didn't commit.
+      - Introduced several RAKE tasks to manage distribution.
+      - Auto-generate the partials.
+      - Automatic change log generation.
+      - There are no API or functional changes to the extension, however.
 
-- Version 1.0.3 / 2016-April-08
+- Version 1.0.5 / 2016-May-11
 
-  - A bit of internal refactoring in order for related gems to be able
-    to use a bit of our features.
+  - Version bump to 1.0.5
+      - Documentation updates.
+      - Added newer partials.
+  - Updates how YARD generates docs and partials
 
-- Version 1.0.2 / 2016-April-07
+- Version 1.0.4 / 2016-May-11
 
-  - Fixed another git issue that introduced a filler page.
-  - Improved documentation.
+  - Bump to version 1.0.4
+      - Introduce Cucumber tests.
+      - Documentation generation with YARD.
+      - Improved documentation project using some of YARD's output.
+      - Lots of source documentation added in order to support YARD.
 
-- Version 1.0.1 / 2016-March-30
+- Version 1.0.3 / 2016-May-11
 
-  - Fixed a git issue that led to installed Gem not working at all.
-  - Added a license to the sample project.
-  - Fixed incorrect version in the sample project.
+  - Internal refactoring for other gem use
 
-- Version 1.0.0 / 2016-March-29
+- Version 1.0.2 / 2016-May-11
 
-  - Initial Release
+  - Documentation updates
+      - Fixed missing documentation page.
+      - Added CLI section.
+  - Documentation project image replacement
+
+- Version 1.0.1 / 2016-May-11
+
+  - Repair incomplete gem; documentation
+    - Fixed a git issue that meant the gem wasn't complete when installed.
+    - Added a license file to the sample project.
+    - Fixed the sample project version number.
+  - Additional naming cleanup
+  - CLI should not have Middlemac class name
+  - Added gem version badge
+  - README update for better top-level description
+
+- Version 1.0.0 / 2016-May-11
+
+  - middleman-targets 1.0.0
+      - Initial commit
+      - middleman-targets adds multiple targets and features to Middleman projects.

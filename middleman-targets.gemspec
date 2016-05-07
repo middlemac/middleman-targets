@@ -2,7 +2,7 @@
 $:.push File.expand_path('../lib', __FILE__)
 require 'middleman-targets/version'
 
-mm_needed = ['~> 4.1', '>= 4.1.6']
+mm_needed = ['~> 4.1', '>= 4.1.7']
 
 Gem::Specification.new do |s|
   s.name        = 'middleman-targets'
@@ -30,4 +30,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'middleman', mm_needed
   s.add_development_dependency 'bundler',   '>= 1.6'
   s.add_development_dependency 'rake',      '>= 10.3'
+  s.add_development_dependency 'git'
 end

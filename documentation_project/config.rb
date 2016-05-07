@@ -103,8 +103,8 @@ helpers do
   end
 
   def product_version
-    '1.0.5'
-  end
+    '1.0.6'
+end
 
   def product_uri
     'https://github.com/middlemac'

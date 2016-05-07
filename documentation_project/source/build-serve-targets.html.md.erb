@@ -1,0 +1,57 @@
+---
+title:  Build and Serve Different Targets
+layout: template-logo-medium
+---
+
+# <%= current_page.data.title %>
+
+Learn how to build and serve different targets using `middleman-targets`, which
+introduces a new CLI options to **Middleman** – `--target` – and a new
+command – `build_all`.
+
+## Build
+
+The new `--target` option specifies the target to build. For example,
+
+~~~ bash
+bundle exec middleman build --target pro
+~~~
+
+…will build your `pro` target.
+
+When using **Middleman** without the `--target` option, the default target
+specified in your configuration will be be used.
+
+## Build All
+
+Instead of building each of your targets one-by-one, you can use the
+`build_all` CLI command to build all targets at once:
+
+~~~ bash
+bundle exec middleman build_all
+~~~
+
+Alternatively you can simply use the alias `all` instead of `build_all`.
+
+## Serve
+
+Just as in building, use the `--target` CLI option:
+
+~~~ bash
+bundle exec middleman serve --target pro
+~~~
+
+And as in building, the default target will be served if the `--target` option
+is not specified.
+
+
+<% content_for :seeAlso do %>
+<ul>
+<li><a href="index.html">Welcome to middleman-targets</a></li>
+<li><a href="simple-demo.html">Simple features demonstration</a></li>
+<li><a href="target-feature-config.html">Configuration</a></li>
+<li><a href="helpers-resources.html">Helpers and Resources</a></li>
+<li><a href="frontmatter.html">Front Matter</a></li>
+<li><a href="cli.html">Command Line Interface</a></li>
+</ul>
+<% end %>

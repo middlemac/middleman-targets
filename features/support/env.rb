@@ -3,7 +3,7 @@ ENV['TEST'] = 'true'
 
 require 'middleman'
 require 'middleman-core/step_definitions'
-require File.join(PROJECT_ROOT_PATH, 'lib', ENV['GEM_NAME'] || 'middleman-targets')
+require File.join(PROJECT_ROOT_PATH, 'lib', 'middleman-targets')
 
 
 require 'cucumber/formatter/pretty'
