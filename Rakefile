@@ -88,10 +88,7 @@ desc 'Remove any wip suffix from the version'
 task :version_finalize do
   version_old = Middleman::MiddlemanTargets::VERSION
   version_new = version_old.sub('.wip', '')
-  update_version_file( version_new )
-  update_doc_file( version_new )
-  Middleman::MiddlemanTargets.send(:remove_const, 'VERSION')
-  Middleman::MiddlemanTargets::VERSION = version_new
+  update_versions( version_new )
 end
 
 
@@ -105,10 +102,17 @@ task :version_next_wip do
   version_new = version_old.sub('.wip', '').split('.')
   version_new.last.succ!
   version_new = version_new.join('.') + '.wip'
-  update_version_file( version_new )
-  update_doc_file( version_new )
-  Middleman::MiddlemanTargets.send(:remove_const, 'VERSION')
-  Middleman::MiddlemanTargets::VERSION = version_new
+  update_versions( version_new )
+end
+
+
+###############################################################################
+# :version_set
+#   Sets an arbitrary version.
+###############################################################################
+desc 'Sets all of the files to the version specified. Use rake version_set[value].'
+task :version_set, :new_version do |t, args|
+  update_versions( args[:new_version] )
 end
 
 
@@ -175,25 +179,29 @@ private
 
 
 ###############################################################################
-# update_version_file
-#   Replace the version in the `version.rb` file.
+# update_versions
+#   Update the version in various files that depend on the correct version.
 ###############################################################################
-def update_version_file( version_new )
-  file = File.expand_path('../lib/middleman-targets/version.rb', __FILE__)
-  content = File.read(file)
-  content.sub!(/(?<=VERSION = ')(.*)(?=')/, version_new)
-  File.write(file, content)
-  puts "version.rb changed to #{version_new}."
-end
+def update_versions( version_new )
+  [ {
+      :file  => File.expand_path('../lib/middleman-targets/version.rb', __FILE__),
+      :regex => /(?<=VERSION = ')(.*)(?=')/
+    },
+    {
+      :file  => File.expand_path('../documentation_project/Gemfile', __FILE__),
+      :regex => /(?<=gem 'middleman-targets', '~> ).*(?=')/
+    },
+    {
+      :file  => File.expand_path('../documentation_project/config.rb', __FILE__),
+      :regex => /(?<=def product_version\n    ').*?(?='\n  end)/m
+    },
+  ].each do | item |
+    
+    content = File.read( item[:file] )
+    content.gsub!( item[:regex], version_new )
+    File.write( item[:file], content )
+    puts "#{File.basename( item[:file] )} changed to '#{version_new}'."
+  end
 
-###############################################################################
-# update_doc_file
-#   Replace the version in the `documentation_project/config.rb` file.
-###############################################################################
-def update_doc_file( version_new )
-  file = File.expand_path('../documentation_project/config.rb', __FILE__)
-  content = File.read(file)
-  content.sub!(/(?<=def product_version).*?(?=end)/m, "\n    '#{version_new}'\n")
-  File.write(file, content)
-  puts "config.rb changed to #{version_new}."
+  Middleman::MiddlemanTargets::VERSION.replace version_new
 end

@@ -1,8 +1,15 @@
 middleman-targets change log
 ============================
 
-- Version 1.0.6 / 2016-May-11
+- Version 1.0.7 / 2016-May-15
 
+  - Bump to 1.0.7 fixes:
+      - Require capybara as development dependency fixes broken testing.
+      - Improved the Rakefile version manipulation system.
+      - Ensure sample project uses correct Gem versions.
+  - Version 1.0.7.wip
+      - Bump to 1.0.7.wip.
+      - to be determined.
   - Version 1.0.6
       - Added the missing documentation file git didn't commit.
       - Introduced several RAKE tasks to manage distribution.

@@ -31,4 +31,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'bundler',   '>= 1.6'
   s.add_development_dependency 'rake',      '>= 10.3'
   s.add_development_dependency 'git'
+  s.add_development_dependency 'capybara', ['~> 2.5.0']
 end

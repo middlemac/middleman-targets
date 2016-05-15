@@ -9,6 +9,6 @@ gem 'wdm', '~> 0.1.0', platforms: [:mswin, :mingw]
 gem 'tzinfo-data', platforms: [:mswin, :mingw, :jruby]
 
 # Middleman Gems
-gem 'middleman-targets', '~>1.0.5'
+gem 'middleman-targets', '~> 1.0.7'
 gem 'middleman', '~> 4.1.6'
 gem 'middleman-syntax'
