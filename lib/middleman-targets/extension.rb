@@ -430,4 +430,19 @@ class MiddlemanTargets < ::Middleman::Extension
   end # say
 
 
+  ############################################################
+  # Instance Methods Exposed to Config
+  # @group Instance Methods Exposed to Config
+  ############################################################
+  expose_to_config :middleman_target
+
+
+  #########################################################
+  # Expose the current target to config.rb.
+  #########################################################
+  def middleman_target
+    @app.config[:target]
+  end 
+
+
 end # class MiddlemanTargets

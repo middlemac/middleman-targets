@@ -103,7 +103,7 @@ helpers do
   end
 
   def product_version
-    '1.0.7'
+    '1.0.8'
   end
 
 end

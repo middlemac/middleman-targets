@@ -1,7 +1,11 @@
 middleman-targets change log
 ============================
 
-- Version 1.0.7 / 2016-May-15
+- Version 1.0.8 / 2018-May-18
+
+  - Added middleman_target exposed to config.rb
+
+- Version 1.0.7 / 2016-May-14
 
   - Bump to 1.0.7 fixes:
       - Require capybara as development dependency fixes broken testing.
@@ -10,6 +14,9 @@ middleman-targets change log
   - Version 1.0.7.wip
       - Bump to 1.0.7.wip.
       - to be determined.
+
+- Version 1.0.6 / 2016-May-10
+
   - Version 1.0.6
       - Added the missing documentation file git didn't commit.
       - Introduced several RAKE tasks to manage distribution.
@@ -17,14 +24,14 @@ middleman-targets change log
       - Automatic change log generation.
       - There are no API or functional changes to the extension, however.
 
-- Version 1.0.5 / 2016-May-11
+- Version 1.0.5 / 2016-May-10
 
   - Version bump to 1.0.5
       - Documentation updates.
       - Added newer partials.
   - Updates how YARD generates docs and partials
 
-- Version 1.0.4 / 2016-May-11
+- Version 1.0.4 / 2016-May-10
 
   - Bump to version 1.0.4
       - Introduce Cucumber tests.
@@ -32,18 +39,18 @@ middleman-targets change log
       - Improved documentation project using some of YARD's output.
       - Lots of source documentation added in order to support YARD.
 
-- Version 1.0.3 / 2016-May-11
+- Version 1.0.3 / 2016-May-10
 
   - Internal refactoring for other gem use
 
-- Version 1.0.2 / 2016-May-11
+- Version 1.0.2 / 2016-May-10
 
   - Documentation updates
       - Fixed missing documentation page.
       - Added CLI section.
   - Documentation project image replacement
 
-- Version 1.0.1 / 2016-May-11
+- Version 1.0.1 / 2016-May-10
 
   - Repair incomplete gem; documentation
     - Fixed a git issue that meant the gem wasn't complete when installed.
@@ -54,7 +61,7 @@ middleman-targets change log
   - Added gem version badge
   - README update for better top-level description
 
-- Version 1.0.0 / 2016-May-11
+- Version 1.0.0 / 2016-May-10
 
   - middleman-targets 1.0.0
       - Initial commit
