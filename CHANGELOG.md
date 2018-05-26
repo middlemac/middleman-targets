@@ -1,11 +1,15 @@
 middleman-targets change log
 ============================
 
-- Version 1.0.8 / 2018-May-18
+- Version 1.0.9 / 2018-May-26
 
+  - Updated to 1.0.9.
+     - Update documentation.
+     - Fix broken template.
+     - Made a testq (quiet) task.
   - Added middleman_target exposed to config.rb
 
-- Version 1.0.7 / 2016-May-14
+- Version 1.0.7 / 2016-May-15
 
   - Bump to 1.0.7 fixes:
       - Require capybara as development dependency fixes broken testing.

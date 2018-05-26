@@ -17,7 +17,11 @@ task :default => :test
 #   Perform Cucumber testing.
 ###############################################################################
 Cucumber::Rake::Task.new(:test, 'Features that must pass') do |task|
-  task.cucumber_opts = '--require features --color --tags ~@wip --strict --format QuietFormatter'
+  task.cucumber_opts = '--require features --color --tags "not @wip" --strict --format pretty'
+end
+
+Cucumber::Rake::Task.new(:testq, 'Features that must pass') do |task|
+  task.cucumber_opts = '--require features --color --tags "not @wip" --strict --format pretty 2>/dev/null'
 end
 
 
@@ -43,11 +47,11 @@ task :partials do
 
   # Define the @!group to output file relationships.
   sections = [
-      { :file => '_yard_helpers.erb',          :group => 'Helpers',  },
-      { :file => '_yard_helpers_extended.erb', :group => 'Extended Helpers' },
-      { :file => '_yard_config.erb',           :group => 'Middleman Configuration' },
-      { :file => '_yard_resources.erb',        :group => 'Resource Extensions',  },
-      { :file => '_yard_instance.erb',         :group => 'Instance Methods',  },
+      { :file => '_yard_mmtargets_helpers.erb',          :group => 'Helpers',  },
+      { :file => '_yard_mmtargets_helpers_extended.erb', :group => 'Extended Helpers' },
+      { :file => '_yard_mmtargets_config.erb',           :group => 'Middleman Configuration' },
+      { :file => '_yard_mmtargets_resources.erb',        :group => 'Resource Extensions',  },
+      { :file => '_yard_mmtargets_instance.erb',         :group => 'Instance Methods',  },
   ]
 
   # Define the output directory.

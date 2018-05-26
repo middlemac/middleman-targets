@@ -24,9 +24,8 @@ class MiddlemanTargets < ::Middleman::Extension
   # Indicates the current target that is being built or served. When
   # set in `config.rb` it indicates the default target if one is not
   # specified on the command line.
-  # @param [Symbol] value The target from `config[:targets]` that should
+  # @return [Symbol] The target from `config[:targets]` that should
   #   be used as the default.
-  # @return [Symbol] Returns the current target.
   # @note This is a Middleman application level config option.
 
 
@@ -61,9 +60,8 @@ class MiddlemanTargets < ::Middleman::Extension
   #                   }
   #           },
   #       }
-  # @param [Hash] value The complete definition of your targets, their
+  # @return [Hash] The complete definition of your targets, their
   #   features, and other keys-value pairs that you wish to include.
-  # @return [Hash] Returns the attributes of your targets.
   # @note This is a Middleman application level config option.
 
 
@@ -72,9 +70,8 @@ class MiddlemanTargets < ::Middleman::Extension
   # If it's `true` then the `image_tag` helper will attempt to substitute
   # target-specific images instead of the specified image, if the specified
   # image begins with `:target_magic_word`.
-  # @param [Boolean] value Specify whether or not automatic target-specific
+  # @return [Boolean] Specify whether or not automatic target-specific
   #   image substitution should be enabled.
-  # @return [Boolean] Returns the current state of this option.
   # @note This is a Middleman application level config option.
 
 
@@ -83,9 +80,8 @@ class MiddlemanTargets < ::Middleman::Extension
   # `image_tag` helper when `:target_magic_images` is enabled. For example
   # if you specify `all-image.png` and `pro-image.png` exists, then the
   # latter will be used by the helper instead of the former.
-  # @param [String] value Indicate the prefix that should indicate and image
-  #   the should be substituted, such as `all`.
-  # @return [String] Returns the current magic prefix.
+  # @return [String] Indicate the prefix that should indicate an image
+  #   that should be substituted, such as `all`.
   # @note This is a Middleman application level config option.
 
 
@@ -97,9 +93,8 @@ class MiddlemanTargets < ::Middleman::Extension
   #
   # If the `build_dir` key is present for any of the `config[:targets]`, they
   # will override this setting.
-  # @param [String] value Indicate the build directory prefix that should be
+  # @return [String] Indicate the build directory prefix that should be
   #   used for build output.
-  # @return [String] Returns the current value of this configuration setting.
   # @note This is a Middleman application level config option.
 
 
@@ -326,7 +321,7 @@ class MiddlemanTargets < ::Middleman::Extension
     # @option params [String, Symbol] :feature This image
     #   tag will only be applied if the current target
     #   enables the feature `feature`.
-    # @return [Void]
+    # @return [String] A properly formed image tag.
     # @group Extended Helpers
     #--------------------------------------------------------
     def image_tag(path, params={})
