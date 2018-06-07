@@ -1,49 +1,50 @@
 require 'middleman-cli'
 
 ################################################################################
-# Envelops the class necessary to provide the `build_all`/`all` commands.
+# Envelops the class necessary to provide the `list_all` command.
 ################################################################################
 module Middleman::Cli
 
   ###################################################################
-  # class Middleman::Cli::BuildAll
-  #  Build all targets.
+  # class Middleman::Cli::ListAll
+  #  List all targets.
   ###################################################################
-  class BuildAll < Thor::Group
+  class ListAll < Thor::Group
     include Thor::Actions
     check_unknown_options!
 
     ############################################################
-    # Build all targets.
+    # List all targets.
     # @return [Void]
     ############################################################
-    def build_all
-
+    def list_all
       # The first thing we want to do is create a temporary application
       # instance so that we can determine the valid targets.
       app = ::Middleman::Application.new do
         config[:exit_before_ready] = true
       end
+      config = app.config.clone
+      app.shutdown!
 
-      build_list = app.config[:targets].each_key.collect { |item| item.to_s }
-      bad_builds = []
+      config[:targets].each do |target|
+        out_path = ''
+        requested_target = target[0]
+        if (build_dir = config[:targets][requested_target][:build_dir])
+          out_path = sprintf(build_dir, requested_target.to_s)
+        else
+          out_path = "#{config[:build_dir]} (#{requested_target.to_s})"
+        end
 
-      build_list.each do |target|
-        bad_builds << target unless Build.start(['--target', target])
+        out_path = File.expand_path(out_path)
+
+        say "#{requested_target.to_s}, #{out_path}", :cyan
+        
       end
-      unless bad_builds.count == 0
-        say
-        say 'These targets produced errors during build:', :red
-        bad_builds.each { |item| say "  #{item}", :red}
-      end
-      bad_builds.count == 0
-
     end
+    
+    Base.register(self, 'list_all', 'list_all', 'Lists all targets')
 
-    Base.register(self, 'build_all', 'build_all', 'Builds all targets')
-    Base.map('all' => 'build_all')
-
-  end # class BuildAll
+  end # class ListAll
 
 end # Module Middleman::Cli
 

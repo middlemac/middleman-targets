@@ -4,3 +4,4 @@
 ################################################################################
 
 require_relative 'middleman-cli/build_all'
+require_relative 'middleman-cli/list_all'
