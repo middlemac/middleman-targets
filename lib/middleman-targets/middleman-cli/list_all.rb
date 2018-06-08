@@ -18,28 +18,43 @@ module Middleman::Cli
     # @return [Void]
     ############################################################
     def list_all
-      # The first thing we want to do is create a temporary application
-      # instance so that we can determine the valid targets.
+
+      # Determine the valid targets.
       app = ::Middleman::Application.new do
         config[:exit_before_ready] = true
       end
-      config = app.config.clone
+      app_config = app.config.clone
       app.shutdown!
 
-      config[:targets].each do |target|
-        out_path = ''
+      # Spin up an instance for each target to get its
+      # output path.
+      app_config[:targets].each do |target|
         requested_target = target[0]
-        if (build_dir = config[:targets][requested_target][:build_dir])
-          out_path = sprintf(build_dir, requested_target.to_s)
-        else
-          out_path = "#{config[:build_dir]} (#{requested_target.to_s})"
+        app = ::Middleman::Application.new do
+          config[:target] = requested_target
+          config[:exit_before_ready] = true
         end
-
-        out_path = File.expand_path(out_path)
-
+        config = app.config.clone
+        app.shutdown!
+        out_path = File.expand_path(config[:build_dir])
         say "#{requested_target.to_s}, #{out_path}", :cyan
-        
       end
+      
+
+#       config[:targets].each do |target|
+#         out_path = ''
+#         requested_target = target[0]
+#         if (build_dir = config[:targets][requested_target][:build_dir])
+#           out_path = sprintf(build_dir, requested_target.to_s)
+#         else
+#           out_path = "#{config[:build_dir]} (#{requested_target.to_s})"
+#         end
+# 
+#         out_path = File.expand_path(out_path)
+# 
+#         say "#{requested_target.to_s}, #{out_path}", :cyan
+#         
+#       end
     end
     
     Base.register(self, 'list_all', 'list_all', 'Lists all targets')

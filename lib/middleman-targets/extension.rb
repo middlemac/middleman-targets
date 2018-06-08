@@ -120,11 +120,15 @@ class MiddlemanTargets < ::Middleman::Extension
   #############################################################
   def after_configuration
 
-    return if app.config[:exit_before_ready]
-
     app.config[:target] = app.config[:target].downcase.to_sym
     requested_target = app.config[:target]
     valid_targets = app.config[:targets].each_key.collect { |item| item.downcase}
+
+    if (build_dir = app.config[:targets][app.config[:target]][:build_dir])
+      app.config[:build_dir] = sprintf(build_dir, requested_target)
+    else
+      app.config[:build_dir] = "#{app.config[:build_dir]} (#{requested_target})"
+    end
 
     if valid_targets.count < 1
       say 'middleman-targets is activated but there are no targets specified in your', :red
@@ -132,16 +136,14 @@ class MiddlemanTargets < ::Middleman::Extension
       exit 1
     end
 
+    return if app.config[:exit_before_ready]
+
+
     if valid_targets.include?(requested_target)
 
       if app.config[:mode] == :server
         say "Middleman will serve using target \"#{requested_target}\".", :blue
       else
-        if (build_dir = app.config[:targets][app.config[:target]][:build_dir])
-          app.config[:build_dir] = sprintf(build_dir, requested_target)
-        else
-          app.config[:build_dir] = "#{app.config[:build_dir]} (#{requested_target})"
-        end
         say "Middleman will build using target \"#{requested_target}\".", :blue
         say "Build directory is \"#{app.config[:build_dir]}\".", :blue
       end

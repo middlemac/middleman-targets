@@ -1,8 +1,9 @@
 middleman-targets change log
 ============================
 
-- Version 1.0.10 / 2018-June-07
+- Version 1.0.11 / 2018-June-08
 
+  - Changed list_all for compatibility with other gems.
   - Bump to version 1.0.10, because list_all command line option was added.
 
 - Version 1.0.9 / 2018-May-26
@@ -16,7 +17,7 @@ middleman-targets change log
 
   - Added middleman_target exposed to config.rb
 
-- Version 1.0.7 / 2016-May-14
+- Version 1.0.7 / 2016-May-15
 
   - Bump to 1.0.7 fixes:
       - Require capybara as development dependency fixes broken testing.
