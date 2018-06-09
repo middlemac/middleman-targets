@@ -18,43 +18,24 @@ module Middleman::Cli
     # @return [Void]
     ############################################################
     def list_all
-
       # Determine the valid targets.
       app = ::Middleman::Application.new do
         config[:exit_before_ready] = true
       end
       app_config = app.config.clone
       app.shutdown!
-
-      # Spin up an instance for each target to get its
-      # output path.
-      app_config[:targets].each do |target|
-        requested_target = target[0]
-        app = ::Middleman::Application.new do
-          config[:target] = requested_target
-          config[:exit_before_ready] = true
-        end
-        config = app.config.clone
-        app.shutdown!
-        out_path = File.expand_path(config[:build_dir])
-        say "#{requested_target.to_s}, #{out_path}", :cyan
-      end
       
-
-#       config[:targets].each do |target|
-#         out_path = ''
-#         requested_target = target[0]
-#         if (build_dir = config[:targets][requested_target][:build_dir])
-#           out_path = sprintf(build_dir, requested_target.to_s)
-#         else
-#           out_path = "#{config[:build_dir]} (#{requested_target.to_s})"
-#         end
-# 
-#         out_path = File.expand_path(out_path)
-# 
-#         say "#{requested_target.to_s}, #{out_path}", :cyan
-#         
-#       end
+      # Because after_configuration won't run again until we
+      # build, we'll fake the strings with the one given for
+      # the default. So for each target, gsub the target for
+      # the initial target already given in config.
+      app_config[:targets].each do |target|
+        target_org = app_config[:target].to_s
+        target_req = target[0].to_s
+        path_org = app_config[:build_dir]
+        path_req = path_org.reverse.sub(target_org.reverse, target_req.reverse).reverse
+        say "#{target_req}, #{File.expand_path(path_req)}", :cyan
+      end        
     end
     
     Base.register(self, 'list_all', 'list_all', 'Lists all targets')

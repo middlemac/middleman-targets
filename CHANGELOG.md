@@ -1,9 +1,13 @@
 middleman-targets change log
 ============================
 
-- Version 1.0.11 / 2018-June-08
+- Version 1.0.12 / 2018-June-09
 
+  - Fix (again) the stupid list_all.
   - Changed list_all for compatibility with other gems.
+
+- Version 1.0.10 / 2018-June-07
+
   - Bump to version 1.0.10, because list_all command line option was added.
 
 - Version 1.0.9 / 2018-May-26
