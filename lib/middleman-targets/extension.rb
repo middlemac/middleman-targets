@@ -31,16 +31,17 @@ class MiddlemanTargets < ::Middleman::Extension
 
   # @!attribute [rw] config[:targets]=
   # A hash that defines all of the characteristics of your individual targets.
-  # The `build_dir` and `features` keys in a target have special meanings;
-  # other keys can be added arbitrarily and helpers can fetch these for you.
-  # A best practice is to assign the same features to _all_ of your targets and
-  # toggle them `on` or `off` on a target-specific basis.
+  # The `build_dir`, 'http_prefix', and `features` keys in a target have special
+  # meanings; other keys can be added arbitrarily and helpers can fetch these
+  # for you. A best practice is to assign the same features to _all_ of your
+  # targets and toggle them `on` or `off` on a target-specific basis.
   # @example You might define this in your `config.rb` like this:
   #     config[:targets] = {
   #       :free =>
   #           {
   #               :sample_key => 'People who use free versions don\'t drive profits.',
   #               :build_dir  => 'build (%s)',
+  #               :http_prefix => '/free',
   #               :features   =>
   #                   {
   #                       :feature_advertise_pro => true,
@@ -52,6 +53,7 @@ class MiddlemanTargets < ::Middleman::Extension
   #           :pro =>
   #           {
   #               :sample_key => 'You are a valued contributor to our balance sheet!',
+  #               :http_prefix => '/pro',
   #               :features =>
   #                   {
   #                       :feature_advertise_pro => false,
@@ -95,6 +97,16 @@ class MiddlemanTargets < ::Middleman::Extension
   # will override this setting.
   # @return [String] Indicate the build directory prefix that should be
   #   used for build output.
+  # @note This is a Middleman application level config option.
+
+
+  # @!attribute [rw] config[:http_prefix]=
+  # Default prefix for building paths. Used by HTML helpers.
+  #
+  # If the `http_prefix` key is present for any of the `config[:targets]`,
+  # they will override this setting.
+  # @return [String] Indicate the HTTP prefix that will be used by
+  #   HTML helpers.
   # @note This is a Middleman application level config option.
 
 
@@ -146,6 +158,11 @@ class MiddlemanTargets < ::Middleman::Extension
       else
         say "Middleman will build using target \"#{requested_target}\".", :blue
         say "Build directory is \"#{app.config[:build_dir]}\".", :blue
+
+        if (http_prefix = app.config[:targets][app.config[:target]][:http_prefix])
+          app.config[:http_prefix] = http_prefix
+          say "Using http_prefix \"#{app.config[:http_prefix]}\".", :blue
+        end
       end
 
     else
