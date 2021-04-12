@@ -1,9 +1,31 @@
 middleman-targets change log
 ============================
 
+- Version 1.0.14 / 2021-April-12
+
+  - Updated Ruby version requirements to make it clear that Ruby 3.0+ is not yet
+    supported.
+    Updated test task so that default task doesn't use the noisy version with deprecation
+    warnings, and to remove the advertisement at the end of output.
+  - Added .gitattributes for proper language reporting in GitHub.
+    No version bump.
+    No new gem.
+
+- Version 1.0.13 / 2018-December-09
+
+  - Bump version to 1.0.13.
+  - Merge pull request #2 from liscio/master
+    Add per-target overrides for :http_prefix
+  - Add per-target overrides for :http_prefix
+    This allows us to build targets that are served at different paths on
+    the same web server.
+
 - Version 1.0.12 / 2018-June-09
 
   - Fix (again) the stupid list_all.
+
+- Version 1.0.11 / 2018-June-08
+
   - Changed list_all for compatibility with other gems.
 
 - Version 1.0.10 / 2018-June-07

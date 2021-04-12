@@ -60,6 +60,58 @@ used for build output.</p>
 </div>
     
       
+      <span id="config[:http_prefix]=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="config[:http_prefix]=-instance_method">
+  
+    #<strong>config[:http_prefix]=</strong>(value)  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>This is a Middleman application level config option.</p>
+</div>
+  </div>
+
+<p>Default prefix for building paths. Used by HTML helpers.</p>
+
+<p>If the <code>http_prefix</code> key is present for any of the <code>config[:targets]</code>,
+they will override this setting.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Indicate the HTTP prefix that will be used by
+HTML helpers.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+    
+      
       <span id="config[:target]=-instance_method"></span>
       <div class="method_details ">
   <h3 class="signature " id="config[:target]=-instance_method">
@@ -235,10 +287,10 @@ that should be substituted, such as <code>all</code>.</p>
   </div>
 
 <p>A hash that defines all of the characteristics of your individual targets.
-The <code>build_dir</code> and <code>features</code> keys in a target have special meanings;
-other keys can be added arbitrarily and helpers can fetch these for you.
-A best practice is to assign the same features to <em>all</em> of your targets and
-toggle them <code>on</code> or <code>off</code> on a target-specific basis.</p>
+The <code>build_dir</code>, ‘http_prefix’, and <code>features</code> keys in a target have special
+meanings; other keys can be added arbitrarily and helpers can fetch these
+for you. A best practice is to assign the same features to <em>all</em> of your
+targets and toggle them <code>on</code> or <code>off</code> on a target-specific basis.</p>
 
 
   </div>
@@ -257,6 +309,7 @@ toggle them <code>on</code> or <code>off</code> on a target-specific basis.</p>
       <span class='lbrace'>{</span>
           <span class='symbol'>:sample_key</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>People who use free versions don\&#39;t drive profits.</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
           <span class='symbol'>:build_dir</span>  <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>build (%s)</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+          <span class='symbol'>:http_prefix</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/free</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
           <span class='symbol'>:features</span>   <span class='op'>=&gt;</span>
               <span class='lbrace'>{</span>
                   <span class='symbol'>:feature_advertise_pro</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='comma'>,</span>
@@ -268,6 +321,7 @@ toggle them <code>on</code> or <code>off</code> on a target-specific basis.</p>
       <span class='symbol'>:pro</span> <span class='op'>=&gt;</span>
       <span class='lbrace'>{</span>
           <span class='symbol'>:sample_key</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You are a valued contributor to our balance sheet!</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+          <span class='symbol'>:http_prefix</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/pro</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
           <span class='symbol'>:features</span> <span class='op'>=&gt;</span>
               <span class='lbrace'>{</span>
                   <span class='symbol'>:feature_advertise_pro</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='comma'>,</span>

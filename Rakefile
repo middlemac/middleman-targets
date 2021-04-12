@@ -17,11 +17,11 @@ task :default => :test
 #   Perform Cucumber testing.
 ###############################################################################
 Cucumber::Rake::Task.new(:test, 'Features that must pass') do |task|
-  task.cucumber_opts = '--require features --color --tags "not @wip" --strict --format pretty'
+  task.cucumber_opts = '--publish-quiet --require features --color --tags "not @wip" --strict --format pretty 2>/dev/null'
 end
 
-Cucumber::Rake::Task.new(:testq, 'Features that must pass') do |task|
-  task.cucumber_opts = '--require features --color --tags "not @wip" --strict --format pretty 2>/dev/null'
+Cucumber::Rake::Task.new(:testnoisy, 'Features that must pass') do |task|
+  task.cucumber_opts = '--publish-quiet --require features --color --tags "not @wip" --strict --format pretty'
 end
 
 
